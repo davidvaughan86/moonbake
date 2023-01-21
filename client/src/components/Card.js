@@ -19,12 +19,16 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+import rocketguy from "./CSS/images/rocketguy2.PNG";
 import OilJar from "./CSS/images/oiljar.JPG";
-import CheeseCake from "./CSS/images/cheesecakejar.JPG";
-import RedVelvet from "./CSS/images/redvelvetjar.JPG";
-import CupCake from "./CSS/images/cupcakes.JPG";
+import RiceCrispy from "./CSS/images/RiceCrispy.JPG";
+import RedVelvet from "./CSS/images/RedVelvet8oz.JPG";
+import CupCake from "./CSS/images/CupCakesingle.JPG";
 import GummyPacks from "./CSS/images/gummypack.JPG";
 import LemondPound from "./CSS/images/lemonpound.JPG";
+import hearts from "./CSS/images/hearts.jpg";
+import moonguy from "./CSS/images/moonguy.jpg";
+import Form from "./Form";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -40,6 +44,16 @@ const ExpandMore = styled((props) => {
 export default function RecipeReviewCard() {
   const [expanded, setExpanded] = React.useState(false);
   const [age, setAge] = React.useState("");
+  const [cart, setCart] = React.useState([]);
+
+  const inventory = [
+    "Gummies",
+    "RedVelvet",
+    "Cupcake",
+    "Ricecrispy",
+    "Lemoncake",
+    "Oil",
+  ];
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -58,22 +72,36 @@ export default function RecipeReviewCard() {
       }}
     >
       <Card
+        className="card"
         sx={{ maxWidth: 345 }}
         style={{ backgroundColor: "#1A4D2E", color: "#FAF3E3" }}
       >
         <CardHeader
+          className="card"
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+              <img src={hearts} style={{ width: "110%" }} />
             </Avatar>
           }
           action={
             <IconButton aria-label="settings">
-              <MoreVertIcon />
+              <button
+                id="1"
+                style={{
+                  backgroundColor: "#1A4D2E",
+                  borderRadius: "5%",
+                  color: "FAF3E3",
+                }}
+                onClick={() => {
+                  setCart(cart + " " + inventory[0] + " " + " |");
+                }}
+              >
+                Order
+              </button>
             </IconButton>
           }
-          title="Sour Grape Gummy Pack"
-          subheader="$15.00 100.8mg/pack"
+          title="Gummy Pack"
+          subheader="$20.00 144mg/pack"
         />
         <CardMedia
           component="img"
@@ -82,18 +110,12 @@ export default function RecipeReviewCard() {
           alt="Paella dish"
         />
         <CardContent>
-          <Typography variant="body2" color="#FAF3E3">
-            These amazing gummies are portalable, quick and tasty, low on
-            calories, and easy to manage. 7 in a pack at 14.4mg per gummy.
+          <Typography className="card" variant="body2" color="#FAF3E3">
+            These tasty gummies are quick, low on calories, easy to manage and
+            long lasting! 10 in a pack at 14.4mg per gummy.
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -107,14 +129,14 @@ export default function RecipeReviewCard() {
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
-              Made with infused Coconut Oil. Contains Gelatin.
+              Made with infused Coconut Oil. Contains gelatin. Pure Citrus added
+              for tart.
             </Typography>
             <Typography paragraph>
               The gummies are a great choice if you need something that can last
               you a while. Great for pregaming, middle of the club snacking, or
               if you need some help falling asleep at night.
             </Typography>
-            <Typography paragraph>Mild feeling.</Typography>
           </CardContent>
         </Collapse>
       </Card>
@@ -126,16 +148,28 @@ export default function RecipeReviewCard() {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+              <img src={hearts} style={{ width: "110%" }} />
             </Avatar>
           }
           action={
             <IconButton aria-label="settings">
-              <MoreVertIcon />
+              <button
+                id="2"
+                style={{
+                  backgroundColor: "#1A4D2E",
+                  borderRadius: "5%",
+                  color: "FAF3E3",
+                }}
+                onClick={() => {
+                  setCart(cart + " " + inventory[1] + " " + " |");
+                }}
+              >
+                Order
+              </button>
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          title="Red Velvet Cake Jar"
+          subheader="$20.00 100mg"
         />
         <CardMedia
           component="img"
@@ -145,18 +179,12 @@ export default function RecipeReviewCard() {
         />
         <CardContent>
           <Typography variant="body2" color="FAF3E3">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
+            This delicious Red Velet with cream cheese Cake Jar will carry you
+            to the moon on a cloud of great taste. Great for a few bites to feel
+            the effects and store away for a snack later.
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -170,31 +198,11 @@ export default function RecipeReviewCard() {
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron
-              and set aside for 10 minutes.
+              Contains dairy (buttermilk). Cocoa powder. Made with infused Ghee.
             </Typography>
             <Typography paragraph>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-              over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-              stirring occasionally until lightly browned, 6 to 8 minutes.
-              Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic,
-              tomatoes, onion, salt and pepper, and cook, stirring often until
-              thickened and fragrant, about 10 minutes. Add saffron broth and
-              remaining 4 1/2 cups chicken broth; bring to a boil.
-            </Typography>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes
-              and peppers, and cook without stirring, until most of the liquid
-              is absorbed, 15 to 18 minutes. Reduce heat to medium-low, add
-              reserved shrimp and mussels, tucking them down into the rice, and
-              cook again without stirring, until mussels have opened and rice is
-              just tender, 5 to 7 minutes more. (Discard any mussels that
-              don&apos;t open.)
-            </Typography>
-            <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then
-              serve.
+              Eat a few bites and store in the fridge for later. The Cream
+              Cheese and Red Velvet are both infused.
             </Typography>
           </CardContent>
         </Collapse>
@@ -207,16 +215,28 @@ export default function RecipeReviewCard() {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+              <img src={moonguy} style={{ width: "110%" }} />
             </Avatar>
           }
           action={
             <IconButton aria-label="settings">
-              <MoreVertIcon />
+              <button
+                id="3"
+                style={{
+                  backgroundColor: "#1A4D2E",
+                  borderRadius: "5%",
+                  color: "FAF3E3",
+                }}
+                onClick={() => {
+                  setCart(cart + " " + inventory[2] + " " + " |");
+                }}
+              >
+                Order
+              </button>
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          title="Vanilla Cupcake"
+          subheader="$15.00 80mg. 4 for $40.00"
         />
         <CardMedia
           component="img"
@@ -226,9 +246,8 @@ export default function RecipeReviewCard() {
         />
         <CardContent>
           <Typography variant="body2" color="#FAF3E3">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
+            An amazing light and fluffy cupcake with great flavor and a great
+            kick. The spondge is moist and delicious. Choose a frosting flavor.
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -247,7 +266,7 @@ export default function RecipeReviewCard() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>Chocolate</MenuItem>
+              <MenuItem value={10}>Cream Cheese</MenuItem>
               <MenuItem value={21}>Vanilla</MenuItem>
             </Select>
           </FormControl>
@@ -264,31 +283,11 @@ export default function RecipeReviewCard() {
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron
-              and set aside for 10 minutes.
+              No lactose in cake. Made with infused Ghee.
             </Typography>
             <Typography paragraph>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-              over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-              stirring occasionally until lightly browned, 6 to 8 minutes.
-              Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic,
-              tomatoes, onion, salt and pepper, and cook, stirring often until
-              thickened and fragrant, about 10 minutes. Add saffron broth and
-              remaining 4 1/2 cups chicken broth; bring to a boil.
-            </Typography>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes
-              and peppers, and cook without stirring, until most of the liquid
-              is absorbed, 15 to 18 minutes. Reduce heat to medium-low, add
-              reserved shrimp and mussels, tucking them down into the rice, and
-              cook again without stirring, until mussels have opened and rice is
-              just tender, 5 to 7 minutes more. (Discard any mussels that
-              don&apos;t open.)
-            </Typography>
-            <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then
-              serve.
+              The Cream Cheese/Vanilla buttercream and the sponge cake are all
+              infused. 'two bites' size also nice for sharing.
             </Typography>
           </CardContent>
         </Collapse>
@@ -301,37 +300,43 @@ export default function RecipeReviewCard() {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+              <img src={moonguy} style={{ width: "110%" }} />
             </Avatar>
           }
           action={
             <IconButton aria-label="settings">
-              <MoreVertIcon />
+              <button
+                id="4"
+                style={{
+                  backgroundColor: "#1A4D2E",
+                  borderRadius: "5%",
+                  color: "FAF3E3",
+                }}
+                onClick={() => {
+                  setCart(cart + " " + inventory[3] + " " + " |");
+                }}
+              >
+                Order
+              </button>
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          title="Fruity Pebbles Rice Crispy"
+          subheader="$10.00 50mg. 4 for $30.00"
+          style={{ color: "white" }}
         />
         <CardMedia
           component="img"
           height="194"
-          image={CheeseCake}
+          image={RiceCrispy}
           alt="Paella dish"
         />
         <CardContent>
           <Typography variant="body2" color="#FAF3E3">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
+            Creamy, sticky, gooey, and crunchy marshmallow fluff with a sweet
+            sugary taste. A nice thick snack for those that love rice crispies.
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -345,31 +350,8 @@ export default function RecipeReviewCard() {
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron
-              and set aside for 10 minutes.
-            </Typography>
-            <Typography paragraph>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-              over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-              stirring occasionally until lightly browned, 6 to 8 minutes.
-              Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic,
-              tomatoes, onion, salt and pepper, and cook, stirring often until
-              thickened and fragrant, about 10 minutes. Add saffron broth and
-              remaining 4 1/2 cups chicken broth; bring to a boil.
-            </Typography>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes
-              and peppers, and cook without stirring, until most of the liquid
-              is absorbed, 15 to 18 minutes. Reduce heat to medium-low, add
-              reserved shrimp and mussels, tucking them down into the rice, and
-              cook again without stirring, until mussels have opened and rice is
-              just tender, 5 to 7 minutes more. (Discard any mussels that
-              don&apos;t open.)
-            </Typography>
-            <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then
-              serve.
+              Made with fruity pebbles, marshmallows and with infused browned
+              Ghee. Contains no milk.
             </Typography>
           </CardContent>
         </Collapse>
@@ -382,16 +364,28 @@ export default function RecipeReviewCard() {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+              <img src={hearts} style={{ width: "110%" }} />
             </Avatar>
           }
           action={
             <IconButton aria-label="settings">
-              <MoreVertIcon />
+              <button
+                id="5"
+                style={{
+                  backgroundColor: "#1A4D2E",
+                  borderRadius: "5%",
+                  color: "FAF3E3",
+                }}
+                onClick={() => {
+                  setCart(cart + " " + inventory[4] + " " + " |");
+                }}
+              >
+                Order
+              </button>
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          title="Lemon Pound Cake"
+          subheader="$15.00 80mg "
         />
         <CardMedia
           component="img"
@@ -401,18 +395,13 @@ export default function RecipeReviewCard() {
         />
         <CardContent>
           <Typography variant="body2" color="#FAF3E3">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
+            Soft and fluffy, lemon zest and lemon juice are added to the cake
+            batter, which lightly perfume the cake with lemon. Then, after
+            baking, the cake is drizzled with a sweet vanilla glaze, so you get
+            a pop of intense flavor in every bite.
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -426,31 +415,10 @@ export default function RecipeReviewCard() {
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron
-              and set aside for 10 minutes.
+              Made with infused Ghee. Icing contains non lactose milk.
             </Typography>
             <Typography paragraph>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-              over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-              stirring occasionally until lightly browned, 6 to 8 minutes.
-              Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic,
-              tomatoes, onion, salt and pepper, and cook, stirring often until
-              thickened and fragrant, about 10 minutes. Add saffron broth and
-              remaining 4 1/2 cups chicken broth; bring to a boil.
-            </Typography>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes
-              and peppers, and cook without stirring, until most of the liquid
-              is absorbed, 15 to 18 minutes. Reduce heat to medium-low, add
-              reserved shrimp and mussels, tucking them down into the rice, and
-              cook again without stirring, until mussels have opened and rice is
-              just tender, 5 to 7 minutes more. (Discard any mussels that
-              don&apos;t open.)
-            </Typography>
-            <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then
-              serve.
+              This lemon pound cake is the ultimate dessert for lemon lovers
             </Typography>
           </CardContent>
         </Collapse>
@@ -463,16 +431,28 @@ export default function RecipeReviewCard() {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+              <img src={moonguy} style={{ width: "110%" }} />
             </Avatar>
           }
           action={
             <IconButton aria-label="settings">
-              <MoreVertIcon />
+              <button
+                id="6"
+                style={{
+                  backgroundColor: "#1A4D2E",
+                  borderRadius: "5%",
+                  color: "FAF3E3",
+                }}
+                onClick={() => {
+                  setCart(cart + " " + inventory[5] + " " + " |");
+                }}
+              >
+                Order
+              </button>
             </IconButton>
           }
           title="Infused Cooking Oil"
-          subheader="$70 - $200"
+          subheader="$70.00 - $200.00"
         />
         <CardMedia
           component="img"
@@ -482,8 +462,8 @@ export default function RecipeReviewCard() {
         />
         <CardContent>
           <Typography variant="body2" color="#FAF3E3">
-            Pick size and potency. Choose between clarified butter: "Ghee" or
-            Coconut oil.
+            Pick a size and potency. Choose between clarified butter: "Ghee" or
+            Coconut oil. Custom made to order, see the options below.
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -550,7 +530,7 @@ export default function RecipeReviewCard() {
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
               Add to recipies that require a type of fat. Use for cooking any
-              savory or sweet dish
+              savory or sweet dish.
             </Typography>
             <Typography paragraph>
               Infused oil for creating your own meals and controlling dosage.
@@ -562,6 +542,8 @@ export default function RecipeReviewCard() {
           </CardContent>
         </Collapse>
       </Card>
+      <Form cart={cart} />
+      <img src={rocketguy} />
     </div>
   );
 }
