@@ -10,25 +10,27 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import rocketguy from "./CSS/images/rocketguy2.PNG";
+import riderocket from "./CSS/images/riderocket.PNG";
 import OilJar from "./CSS/images/oiljar.JPG";
 import RiceCrispy from "./CSS/images/RiceCrispy.JPG";
 import RedVelvet from "./CSS/images/RedVelvet8oz.JPG";
 import CupCake from "./CSS/images/CupCakesingle.JPG";
-import GummyPacks from "./CSS/images/gummypack.JPG";
+import GummyPacks from "./CSS/images/gummypack.jpeg";
 import LemondPound from "./CSS/images/lemonpound.JPG";
 import hearts from "./CSS/images/hearts.jpg";
 import moonguy from "./CSS/images/moonguy.jpg";
+import soldout from "./CSS/images/SoldOut.PNG";
+import "./CSS/Card.css";
 import Form from "./Form";
+import { createTheme } from "@mui/material/styles";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -43,7 +45,12 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeReviewCard() {
   const [expanded, setExpanded] = React.useState(false);
-  const [age, setAge] = React.useState("");
+  const [oz, setOz] = React.useState("");
+  const [fat, setFat] = React.useState("");
+  const [potency, setPotency] = React.useState("");
+  const [flavor, setFlavor] = React.useState("");
+  const [pack, setPack] = React.useState("");
+  const [pack2, setPack2] = React.useState("");
   const [cart, setCart] = React.useState([]);
 
   const inventory = [
@@ -56,12 +63,39 @@ export default function RecipeReviewCard() {
   ];
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setOz(event.target.value);
+  };
+  const handleChange1 = (event) => {
+    setPotency(event.target.value);
+  };
+  const handleChange2 = (event) => {
+    setFat(event.target.value);
+  };
+  const handleChange0 = (event) => {
+    setFlavor(event.target.value);
+  };
+  const handleChange3 = (event) => {
+    setPack(event.target.value);
+  };
+  const handleChange4 = (event) => {
+    setPack2(event.target.value);
   };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const theme = createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            fontSize: "20px",
+          },
+        },
+      },
+    },
+  });
 
   return (
     <div
@@ -71,13 +105,32 @@ export default function RecipeReviewCard() {
         alignItems: "center",
       }}
     >
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* GUMMIES */}
       <Card
-        className="card"
+        theme={theme}
         sx={{ maxWidth: 345 }}
-        style={{ backgroundColor: "#1A4D2E", color: "#FAF3E3" }}
+        style={{
+          backgroundColor: "#0096FF",
+          color: "#FAF3E3",
+          border: "3px solid #F2F2F2",
+          boxShadow: "5px 5px 5px black",
+        }}
       >
         <CardHeader
-          className="card"
+          theme={theme}
+          style={{ fontSize: "20px" }}
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
               <img src={hearts} style={{ width: "110%" }} />
@@ -88,31 +141,47 @@ export default function RecipeReviewCard() {
               <button
                 id="1"
                 style={{
-                  backgroundColor: "#1A4D2E",
+                  backgroundColor: "white",
                   borderRadius: "5%",
                   color: "FAF3E3",
                 }}
                 onClick={() => {
                   setCart(cart + " " + inventory[0] + " " + " |");
+                  toast("Added to Order", {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
                 }}
               >
-                Order
+                Reuqest
               </button>
             </IconButton>
           }
           title="Gummy Pack"
-          subheader="$20.00 144mg/pack"
+          subheader="$35.00 225mg"
         />
         <CardMedia
           component="img"
           height="194"
           image={GummyPacks}
-          alt="Paella dish"
+          alt="gummy pack"
         />
         <CardContent>
-          <Typography className="card" variant="body2" color="#FAF3E3">
-            These tasty gummies are quick, low on calories, easy to manage and
-            long lasting! 10 in a pack at 14.4mg per gummy.
+          <Typography
+            style={{ fontSize: "18px" }}
+            className="card"
+            variant="body2"
+            color="#FAF3E3"
+          >
+            15 Quick, tasty, and long lasting Gummies. The most popular way to
+            get that good feeling without too many calories. The chewy texture
+            is so satisfying and the flavor is explosive.
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -141,9 +210,15 @@ export default function RecipeReviewCard() {
         </Collapse>
       </Card>
       <br />
+      {/* RED VELVET  */}
       <Card
         sx={{ maxWidth: 345 }}
-        style={{ backgroundColor: "#1A4D2E", color: "#FAF3E3" }}
+        style={{
+          backgroundColor: "#0096FF",
+          color: "#FAF3E3",
+          border: "3px solid #F2F2F2",
+          boxShadow: "5px 5px 5px black",
+        }}
       >
         <CardHeader
           avatar={
@@ -156,15 +231,25 @@ export default function RecipeReviewCard() {
               <button
                 id="2"
                 style={{
-                  backgroundColor: "#1A4D2E",
+                  backgroundColor: "white",
                   borderRadius: "5%",
                   color: "FAF3E3",
                 }}
                 onClick={() => {
                   setCart(cart + " " + inventory[1] + " " + " |");
+                  toast("Added to Order", {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
                 }}
               >
-                Order
+                Reuqest
               </button>
             </IconButton>
           }
@@ -175,10 +260,14 @@ export default function RecipeReviewCard() {
           component="img"
           height="194"
           image={RedVelvet}
-          alt="Paella dish"
+          alt="red velvet"
         />
         <CardContent>
-          <Typography variant="body2" color="FAF3E3">
+          <Typography
+            style={{ fontSize: "18px" }}
+            variant="body2"
+            color="FAF3E3"
+          >
             This delicious Red Velet with cream cheese Cake Jar will carry you
             to the moon on a cloud of great taste. Great for a few bites to feel
             the effects and store away for a snack later.
@@ -208,9 +297,15 @@ export default function RecipeReviewCard() {
         </Collapse>
       </Card>
       <br />
+      {/* CUPCAKE  */}
       <Card
         sx={{ maxWidth: 345 }}
-        style={{ backgroundColor: "#1A4D2E", color: "#FAF3E3" }}
+        style={{
+          backgroundColor: "#0096FF",
+          color: "#FAF3E3",
+          border: "3px solid #F2F2F2",
+          boxShadow: "5px 5px 5px black",
+        }}
       >
         <CardHeader
           avatar={
@@ -223,15 +318,34 @@ export default function RecipeReviewCard() {
               <button
                 id="3"
                 style={{
-                  backgroundColor: "#1A4D2E",
+                  backgroundColor: "white",
                   borderRadius: "5%",
                   color: "FAF3E3",
                 }}
                 onClick={() => {
-                  setCart(cart + " " + inventory[2] + " " + " |");
+                  setCart(
+                    cart +
+                      flavor +
+                      " " +
+                      pack2 +
+                      " " +
+                      inventory[2] +
+                      " " +
+                      " |"
+                  );
+                  toast("Added to Order", {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
                 }}
               >
-                Order
+                Reuqest
               </button>
             </IconButton>
           }
@@ -242,10 +356,14 @@ export default function RecipeReviewCard() {
           component="img"
           height="194"
           image={CupCake}
-          alt="Paella dish"
+          alt="cup cake "
         />
         <CardContent>
-          <Typography variant="body2" color="#FAF3E3">
+          <Typography
+            style={{ fontSize: "18px" }}
+            variant="body2"
+            color="#FAF3E3"
+          >
             An amazing light and fluffy cupcake with great flavor and a great
             kick. The spondge is moist and delicious. Choose a frosting flavor.
           </Typography>
@@ -258,16 +376,31 @@ export default function RecipeReviewCard() {
             <Select
               labelId="demo-simple-select-autowidth-label"
               id="demo-simple-select-autowidth"
-              value={age}
-              onChange={handleChange}
+              value={flavor}
+              onChange={handleChange0}
               autoWidth
-              label="Age"
+              label="flavor"
+            >
+              <MenuItem value={"CreamCheese"}>Cream Cheese</MenuItem>
+              <MenuItem value={"Vanilla"}>Vanilla</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-autowidth-label">
+              4 Pack?
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={pack2}
+              onChange={handleChange4}
+              autoWidth
+              label="4 pack"
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>Cream Cheese</MenuItem>
-              <MenuItem value={21}>Vanilla</MenuItem>
+              <MenuItem value={"4 pack"}>Yes</MenuItem>
             </Select>
           </FormControl>
           <ExpandMore
@@ -293,9 +426,15 @@ export default function RecipeReviewCard() {
         </Collapse>
       </Card>
       <br />
+      {/* RICE CRISPY  */}
       <Card
         sx={{ maxWidth: 345 }}
-        style={{ backgroundColor: "#1A4D2E", color: "#FAF3E3" }}
+        style={{
+          backgroundColor: "#0096FF",
+          color: "#FAF3E3",
+          border: "3px solid #F2F2F2",
+          boxShadow: "5px 5px 5px black",
+        }}
       >
         <CardHeader
           avatar={
@@ -308,15 +447,25 @@ export default function RecipeReviewCard() {
               <button
                 id="4"
                 style={{
-                  backgroundColor: "#1A4D2E",
+                  backgroundColor: "white",
                   borderRadius: "5%",
                   color: "FAF3E3",
                 }}
                 onClick={() => {
-                  setCart(cart + " " + inventory[3] + " " + " |");
+                  setCart(cart + pack + " " + inventory[3] + " |");
+                  toast("Added to Order", {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
                 }}
               >
-                Order
+                Request
               </button>
             </IconButton>
           }
@@ -328,15 +477,37 @@ export default function RecipeReviewCard() {
           component="img"
           height="194"
           image={RiceCrispy}
-          alt="Paella dish"
+          alt="rice crispy"
         />
         <CardContent>
-          <Typography variant="body2" color="#FAF3E3">
+          <Typography
+            style={{ fontSize: "18px" }}
+            variant="body2"
+            color="#FAF3E3"
+          >
             Creamy, sticky, gooey, and crunchy marshmallow fluff with a sweet
             sugary taste. A nice thick snack for those that love rice crispies.
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-autowidth-label">
+              4 Pack?
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={pack}
+              onChange={handleChange3}
+              autoWidth
+              label="4 pack"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"4 pack"}>Yes</MenuItem>
+            </Select>
+          </FormControl>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -357,9 +528,15 @@ export default function RecipeReviewCard() {
         </Collapse>
       </Card>
       <br />
+      {/* LEMON POUND  */}
       <Card
         sx={{ maxWidth: 345 }}
-        style={{ backgroundColor: "#1A4D2E", color: "#FAF3E3" }}
+        style={{
+          backgroundColor: "#0096FF",
+          color: "#FAF3E3",
+          border: "3px solid #F2F2F2",
+          boxShadow: "5px 5px 5px black",
+        }}
       >
         <CardHeader
           avatar={
@@ -372,29 +549,43 @@ export default function RecipeReviewCard() {
               <button
                 id="5"
                 style={{
-                  backgroundColor: "#1A4D2E",
+                  backgroundColor: "white",
                   borderRadius: "5%",
                   color: "FAF3E3",
                 }}
                 onClick={() => {
-                  setCart(cart + " " + inventory[4] + " " + " |");
+                  setCart(cart + " " + inventory[4] + " |");
+                  toast("Added to Order", {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
                 }}
               >
-                Order
+                Reuqest
               </button>
             </IconButton>
           }
-          title="Lemon Pound Cake"
+          title="Lemon Pound Cake Slice"
           subheader="$15.00 80mg "
         />
         <CardMedia
           component="img"
           height="194"
           image={LemondPound}
-          alt="Paella dish"
+          alt="Lemon Pound Cake"
         />
         <CardContent>
-          <Typography variant="body2" color="#FAF3E3">
+          <Typography
+            style={{ fontSize: "18px" }}
+            variant="body2"
+            color="#FAF3E3"
+          >
             Soft and fluffy, lemon zest and lemon juice are added to the cake
             batter, which lightly perfume the cake with lemon. Then, after
             baking, the cake is drizzled with a sweet vanilla glaze, so you get
@@ -424,9 +615,15 @@ export default function RecipeReviewCard() {
         </Collapse>
       </Card>
       <br />
+      {/* COOKING OIL  */}
       <Card
         sx={{ maxWidth: 345 }}
-        style={{ backgroundColor: "#1A4D2E", color: "#FAF3E3" }}
+        style={{
+          backgroundColor: "#0096FF",
+          color: "#FAF3E3",
+          border: "3px solid #F2F2F2",
+          boxShadow: "5px 5px 5px black",
+        }}
       >
         <CardHeader
           avatar={
@@ -439,15 +636,36 @@ export default function RecipeReviewCard() {
               <button
                 id="6"
                 style={{
-                  backgroundColor: "#1A4D2E",
+                  backgroundColor: "white",
                   borderRadius: "5%",
                   color: "FAF3E3",
                 }}
                 onClick={() => {
-                  setCart(cart + " " + inventory[5] + " " + " |");
+                  setCart(
+                    cart +
+                      oz +
+                      "/" +
+                      potency +
+                      "/" +
+                      fat +
+                      " " +
+                      inventory[5] +
+                      " " +
+                      " |"
+                  );
+                  toast("Added to Order", {
+                    position: "top-center",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
                 }}
               >
-                Order
+                Reuqest
               </button>
             </IconButton>
           }
@@ -461,7 +679,11 @@ export default function RecipeReviewCard() {
           alt="Paella dish"
         />
         <CardContent>
-          <Typography variant="body2" color="#FAF3E3">
+          <Typography
+            style={{ fontSize: "18px" }}
+            variant="body2"
+            color="#FAF3E3"
+          >
             Pick a size and potency. Choose between clarified butter: "Ghee" or
             Coconut oil. Custom made to order, see the options below.
           </Typography>
@@ -472,15 +694,12 @@ export default function RecipeReviewCard() {
             <Select
               labelId="demo-select-small"
               id="demo-select-small"
-              value={age}
-              label="Age"
+              value={oz}
+              label="oz"
               onChange={handleChange}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>8</MenuItem>
-              <MenuItem value={21}>16</MenuItem>
+              <MenuItem value={"8oz"}>8</MenuItem>
+              <MenuItem value={"16oz"}>16</MenuItem>
             </Select>
           </FormControl>
           <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
@@ -488,16 +707,13 @@ export default function RecipeReviewCard() {
             <Select
               labelId="demo-select-small"
               id="demo-select-small"
-              value={age}
-              label="Age"
-              onChange={handleChange}
+              value={potency}
+              label="Potency"
+              onChange={handleChange1}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>3.5k mg</MenuItem>
-              <MenuItem value={21}>7k mg</MenuItem>
-              <MenuItem value={21}>14k mg</MenuItem>
+              <MenuItem value={"3.5g"}>3.5k mg</MenuItem>
+              <MenuItem value={"7g"}>7k mg</MenuItem>
+              <MenuItem value={"14g"}>14k mg</MenuItem>
             </Select>
           </FormControl>
           <FormControl sx={{ m: 1, minWidth: 90 }} size="small">
@@ -505,15 +721,12 @@ export default function RecipeReviewCard() {
             <Select
               labelId="demo-select-small"
               id="demo-select-small"
-              value={age}
-              label="Age"
-              onChange={handleChange}
+              value={fat}
+              label="fat"
+              onChange={handleChange2}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Coconut</MenuItem>
-              <MenuItem value={21}>Ghee</MenuItem>
+              <MenuItem value={"Coconut"}>Coconut</MenuItem>
+              <MenuItem value={"Ghee"}>Ghee</MenuItem>
             </Select>
           </FormControl>
           <ExpandMore
@@ -543,7 +756,7 @@ export default function RecipeReviewCard() {
         </Collapse>
       </Card>
       <Form cart={cart} />
-      <img src={rocketguy} />
+      <img src={riderocket} />
     </div>
   );
 }

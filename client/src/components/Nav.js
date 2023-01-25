@@ -4,9 +4,15 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const Nav = () => {
   return (
     <div style={{ textAlign: "right" }} id="nav">
-      <a style={{ textDecoration: "none" }} href="#bottom-of-page">
+      <a
+        style={{ textDecoration: "none", color: "white" }}
+        href="#bottom-of-page"
+      >
         {" "}
-        <ShoppingCartIcon /> Order
+        <ShoppingCartIcon
+          style={{ textDecoration: "none", color: "white" }}
+        />{" "}
+        Order
       </a>
     </div>
   );
