@@ -49,7 +49,7 @@ function App() {
                 The form below is to CONTACT US about placing an order. We will
                 respond to your REQUEST. You are NOT purchasing ANYTHING listed
                 on this website. You are inquiring about these items. If an item
-                has options please remember to select an option.
+                has options please remember to select an option. Thank you.
               </b>
             </details>
           </aside>

@@ -12,9 +12,23 @@ const Form = (props) => {
     send.style.display = "none";
   });
 
+  const [alias, setAlias] = useState("");
+  const [zip, setZip] = useState("");
+  const [contactMethod, setContactMethod] = useState("");
+  const [contactInfo, setContactInfo] = useState("");
+
   const formData = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
+
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 5000);
+
+    setAlias("");
+    setZip("");
+    setContactMethod("");
+    setContactInfo("");
 
     emailjs
       .sendForm(
@@ -27,7 +41,7 @@ const Form = (props) => {
         function (response) {
           console.log("SUCCESS!", response.status, response.text);
           toast("Email Sent", {
-            position: "bottom-center",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -81,7 +95,7 @@ const Form = (props) => {
               The form below is to CONTACT US about placing an order. We will
               respond to your REQUEST. You are NOT purchasing ANYTHING listed on
               this website. You are inquiring about these items. If an item has
-              options please remember to select an option.
+              options please remember to select an option. Thank you.
             </b>
           </details>
         </aside>
@@ -111,7 +125,8 @@ const Form = (props) => {
               id="aliasName"
               type="text"
               name="name"
-              // onChange={handleChange}
+              value={alias}
+              onChange={(event) => setAlias(event.target.value)}
             />
           </label>
           <br />
@@ -123,7 +138,8 @@ const Form = (props) => {
               id="deliveryQuery"
               type="text"
               name="zip"
-              // onChange={handleChange}
+              value={zip}
+              onChange={(event) => setZip(event.target.value)}
             />
           </label>
           <br />
@@ -141,7 +157,8 @@ const Form = (props) => {
               id="contactInfo"
               type="text"
               name="contactInfo"
-              // onChange={handleChange}
+              value={contactMethod}
+              onChange={(event) => setContactMethod(event.target.value)}
             />
           </label>
           <br />
@@ -153,7 +170,8 @@ const Form = (props) => {
               id="contactInfo"
               type="text"
               name="info"
-              // onChange={handleChange}
+              value={contactInfo}
+              onChange={(event) => setContactInfo(event.target.value)}
             />
           </label>
           <br />
@@ -211,7 +229,7 @@ const Form = (props) => {
           />
         </form>{" "}
         <ToastContainer
-          position="bottom-center"
+          position="top-center"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}

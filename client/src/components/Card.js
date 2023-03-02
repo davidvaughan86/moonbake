@@ -16,6 +16,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+import Cookie from "./CSS/images/cookie.jpg";
 import riderocket from "./CSS/images/riderocket.PNG";
 import OilJar from "./CSS/images/oiljar.JPG";
 import RiceCrispy from "./CSS/images/RiceCrispy.JPG";
@@ -26,6 +27,7 @@ import LemondPound from "./CSS/images/lemonpound.JPG";
 import hearts from "./CSS/images/hearts.jpg";
 import moonguy from "./CSS/images/moonguy.jpg";
 import soldout from "./CSS/images/SoldOut.PNG";
+import Brownie from "./CSS/images/brownie.PNG";
 import "./CSS/Card.css";
 import Form from "./Form";
 import { createTheme } from "@mui/material/styles";
@@ -49,17 +51,19 @@ export default function RecipeReviewCard() {
   const [fat, setFat] = React.useState("");
   const [potency, setPotency] = React.useState("");
   const [flavor, setFlavor] = React.useState("");
+  const [flavor2, setFlavor2] = React.useState("");
   const [pack, setPack] = React.useState("");
   const [pack2, setPack2] = React.useState("");
   const [cart, setCart] = React.useState([]);
 
   const inventory = [
     "Gummies",
-    "RedVelvet",
+    "Cake Jar",
     "Cupcake",
-    "Ricecrispy",
+    "Cookie",
     "Lemoncake",
     "Oil",
+    "Brownie",
   ];
 
   const handleChange = (event) => {
@@ -79,6 +83,9 @@ export default function RecipeReviewCard() {
   };
   const handleChange4 = (event) => {
     setPack2(event.target.value);
+  };
+  const handleChange7 = (event) => {
+    setFlavor2(event.target.value);
   };
 
   const handleExpandClick = () => {
@@ -159,12 +166,12 @@ export default function RecipeReviewCard() {
                   });
                 }}
               >
-                Reuqest
+                Request
               </button>
             </IconButton>
           }
           title="Gummy Pack"
-          subheader="$35.00 225mg"
+          subheader="$25.00 225mg"
         />
         <CardMedia
           component="img"
@@ -210,7 +217,7 @@ export default function RecipeReviewCard() {
         </Collapse>
       </Card>
       <br />
-      {/* RED VELVET  */}
+      {/* Brownie */}
       <Card
         sx={{ maxWidth: 345 }}
         style={{
@@ -229,14 +236,14 @@ export default function RecipeReviewCard() {
           action={
             <IconButton aria-label="settings">
               <button
-                id="2"
+                id="5"
                 style={{
                   backgroundColor: "white",
                   borderRadius: "5%",
                   color: "FAF3E3",
                 }}
                 onClick={() => {
-                  setCart(cart + " " + inventory[1] + " " + " |");
+                  setCart(cart + " " + inventory[6] + " |");
                   toast("Added to Order", {
                     position: "top-center",
                     autoClose: 2000,
@@ -249,28 +256,22 @@ export default function RecipeReviewCard() {
                   });
                 }}
               >
-                Reuqest
+                Request
               </button>
             </IconButton>
           }
-          title="Red Velvet Cake Jar"
-          subheader="$20.00 100mg"
+          title="Dank Ass Brownie"
+          subheader="$20.00 220mg "
         />
-        <CardMedia
-          component="img"
-          height="194"
-          image={RedVelvet}
-          alt="red velvet"
-        />
+        <CardMedia component="img" height="194" image={Brownie} alt="brownie" />
         <CardContent>
           <Typography
             style={{ fontSize: "18px" }}
             variant="body2"
-            color="FAF3E3"
+            color="#FAF3E3"
           >
-            This delicious Red Velet with cream cheese Cake Jar will carry you
-            to the moon on a cloud of great taste. Great for a few bites to feel
-            the effects and store away for a snack later.
+            These Amazing Chocolate Brownies are deliciously soft, gooey and
+            fudgy inside. Potent!
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -287,15 +288,15 @@ export default function RecipeReviewCard() {
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
-              Contains dairy (buttermilk). Cocoa powder. Made with infused Ghee.
+              Made with infused Ghee. No milk. Coffee beans
             </Typography>
             <Typography paragraph>
-              Eat a few bites and store in the fridge for later. The Cream
-              Cheese and Red Velvet are both infused.
+              This dank ass brownie is a classic!
             </Typography>
           </CardContent>
         </Collapse>
       </Card>
+
       <br />
       {/* CUPCAKE  */}
       <Card
@@ -345,7 +346,7 @@ export default function RecipeReviewCard() {
                   });
                 }}
               >
-                Reuqest
+                Request
               </button>
             </IconButton>
           }
@@ -419,14 +420,14 @@ export default function RecipeReviewCard() {
               No lactose in cake. Made with infused Ghee.
             </Typography>
             <Typography paragraph>
-              The Cream Cheese/Vanilla buttercream and the sponge cake are all
-              infused. 'two bites' size also nice for sharing.
+              'Two bites' size also nice for sharing. Available in a 4 pack
+              party size.
             </Typography>
           </CardContent>
         </Collapse>
       </Card>
       <br />
-      {/* RICE CRISPY  */}
+      {/* Cookie  */}
       <Card
         sx={{ maxWidth: 345 }}
         style={{
@@ -452,7 +453,7 @@ export default function RecipeReviewCard() {
                   color: "FAF3E3",
                 }}
                 onClick={() => {
-                  setCart(cart + pack + " " + inventory[3] + " |");
+                  setCart(cart + " " + inventory[3] + " |");
                   toast("Added to Order", {
                     position: "top-center",
                     autoClose: 2000,
@@ -469,15 +470,16 @@ export default function RecipeReviewCard() {
               </button>
             </IconButton>
           }
-          title="Fruity Pebbles Rice Crispy"
-          subheader="$10.00 50mg. 4 for $30.00"
+          title=" Three Sugar Cookies"
+          subheader="$20 - coming soon"
           style={{ color: "white" }}
         />
         <CardMedia
+          className="cookies"
           component="img"
           height="194"
-          image={RiceCrispy}
-          alt="rice crispy"
+          image={Cookie}
+          alt="sugar cookie"
         />
         <CardContent>
           <Typography
@@ -485,29 +487,11 @@ export default function RecipeReviewCard() {
             variant="body2"
             color="#FAF3E3"
           >
-            Creamy, sticky, gooey, and crunchy marshmallow fluff with a sweet
-            sugary taste. A nice thick snack for those that love rice crispies.
+            3 pack of crispy on the outside soft on the inside sugar cookies.
+            Not only are they extremely yummy, they are perfect for any occasion
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-autowidth-label">
-              4 Pack?
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-autowidth-label"
-              id="demo-simple-select-autowidth"
-              value={pack}
-              onChange={handleChange3}
-              autoWidth
-              label="4 pack"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={"4 pack"}>Yes</MenuItem>
-            </Select>
-          </FormControl>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -521,15 +505,14 @@ export default function RecipeReviewCard() {
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
-              Made with fruity pebbles, marshmallows and with infused browned
-              Ghee. Contains no milk.
+              Made with infused Ghee. Contains no lactose.
             </Typography>
           </CardContent>
         </Collapse>
       </Card>
       <br />
       {/* LEMON POUND  */}
-      <Card
+      {/* <Card
         sx={{ maxWidth: 345 }}
         style={{
           backgroundColor: "#0096FF",
@@ -567,7 +550,7 @@ export default function RecipeReviewCard() {
                   });
                 }}
               >
-                Reuqest
+                Request
               </button>
             </IconButton>
           }
@@ -610,6 +593,114 @@ export default function RecipeReviewCard() {
             </Typography>
             <Typography paragraph>
               This lemon pound cake is the ultimate dessert for lemon lovers
+            </Typography>
+          </CardContent>
+        </Collapse>
+      </Card> */}
+      {/* <br /> */}
+
+      {/* Cake jar  */}
+      <Card
+        sx={{ maxWidth: 345 }}
+        style={{
+          backgroundColor: "#0096FF",
+          color: "#FAF3E3",
+          border: "3px solid #F2F2F2",
+          boxShadow: "5px 5px 5px black",
+        }}
+      >
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              <img src={hearts} style={{ width: "110%" }} />
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <button
+                id="2"
+                style={{
+                  backgroundColor: "white",
+                  borderRadius: "5%",
+                  color: "FAF3E3",
+                }}
+                onClick={() => {
+                  setCart(
+                    cart + flavor2 + " " + " " + inventory[1] + " " + " |"
+                  );
+                  toast("Added to Order", {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
+                }}
+              >
+                Request
+              </button>
+            </IconButton>
+          }
+          title="Cake Jar"
+          subheader="$20.00 100mg"
+        />
+        <CardMedia
+          component="img"
+          height="194"
+          image={RedVelvet}
+          alt="red velvet"
+        />
+        <CardContent>
+          <Typography
+            style={{ fontSize: "18px" }}
+            variant="body2"
+            color="FAF3E3"
+          >
+            These delicious Cake Jars will carry you to the moon on a cloud of
+            great taste. Great for a few bites to feel the effects and store
+            away for a snack later. Choose Red Velvet/Cream Cheese or
+            Yellow/Vanilla
+          </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-autowidth-label">
+              Flavor
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={flavor2}
+              onChange={handleChange7}
+              autoWidth
+              label="flavor"
+            >
+              <MenuItem value={"Red Velvet"}>Red Velvet</MenuItem>
+              <MenuItem value={"Vanilla"}>Vanilla</MenuItem>
+            </Select>
+          </FormControl>
+
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>Method:</Typography>
+            <Typography paragraph>
+              Contains dairy (buttermilk). Cocoa powder. Made with infused Ghee.
+            </Typography>
+            <Typography paragraph>
+              Eat a few bites and store in the fridge for later. The Cream
+              Cheese and Red Velvet are both infused.
             </Typography>
           </CardContent>
         </Collapse>
@@ -665,7 +756,7 @@ export default function RecipeReviewCard() {
                   });
                 }}
               >
-                Reuqest
+                Request
               </button>
             </IconButton>
           }
